@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "AMessage.pb-c.h"
+// #include <stdlib.h>
+// #include "AMessage.pb-c.h"
 
 int main()
 {
