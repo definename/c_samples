@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "AMessage.pb-c.h"
 
 int main()
 {

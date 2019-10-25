@@ -14,4 +14,4 @@ protoc --plugin=$PLUGIN --proto_path=$PROTO_PATH --c_out=$PROTO_OUT $PROTOFILE
 
 OUT=test
 echo "[*] About to build binary:$OUT"
-gcc ./main.c -o $OUT
+gcc ./main.c -o $OUT -I./libs
