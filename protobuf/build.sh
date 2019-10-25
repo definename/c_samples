@@ -1,9 +1,9 @@
 #!/bin/sh
 
-PROTOFILE=../AMessage.proto
-PLUGIN=../protoc-gen-c
-PROTO_OUT=../
-PROTO_PATH=../
+PROTOFILE=./AMessage.proto
+PLUGIN=./protoc-gen-c
+PROTO_OUT=./
+PROTO_PATH=./
 
 echo "Protofiles:$PROTOFILE"
 echo "Plugin:$PLUGIN"
@@ -12,8 +12,8 @@ echo "Proto path:$PROTO_PATH"
 echo "[*] About to generate protobuf..."
 protoc --plugin=$PLUGIN --proto_path=$PROTO_PATH --c_out=$PROTO_OUT $PROTOFILE
 
-OUT=../test
-INCLUDES_DIR=../libs
-SOURCES=../main.c
+OUT=./test
+INCLUDES_DIR=./libs
+SOURCES=./main.c
 echo "[*] About to build binary:$OUT"
 gcc $SOURCES -o $OUT -I$INCLUDES_DIR
