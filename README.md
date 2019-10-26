@@ -6,4 +6,4 @@
 
 Язык `С++` добавляет к языку `С` инструментальные средства объектно-ориентированного программирования.
 
-[gnu](http://www.gnu.org/) GNU - GNU's not Unix
+[gnu](http://www.gnu.org/) - GNU's not Unix
