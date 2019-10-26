@@ -5,3 +5,5 @@
 [protobuf c](https://github.com/protobuf-c/protobuf-c) C implementation of protocol buffers.
 
 Язык `С++` добавляет к языку `С` инструментальные средства объектно-ориентированного программирования.
+
+[gnu](http://www.gnu.org/) GNU - GNU's not Unix
