@@ -10,8 +10,6 @@
 
 [protobuf c](https://github.com/protobuf-c/protobuf-c) C implementation of protocol buffers.
 
-```
-
 # Этапы построения програмы на С/С++ (От исходного кода до испоняемого файла):
 
 - Препроцессор
@@ -22,6 +20,7 @@
 #define
 #ifndef, #ifdef, #endif
 ```
+
 - Компиляция
 
 Создает объектные файлы `*.obj, *.o`, проверяет ошибки.
