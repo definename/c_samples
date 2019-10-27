@@ -8,8 +8,9 @@
 
 [ut hash](http://troydhanson.github.io/uthash/) hash table for c structures.
 
-## Build build protobuf-c on linux:
 [protobuf c](https://github.com/protobuf-c/protobuf-c) C implementation of protocol buffers.
+
+## Build build protobuf-c on linux:
 
 ```
 sudo apt install libprotobuf-dev
