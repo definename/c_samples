@@ -8,7 +8,14 @@
 
 [ut hash](http://troydhanson.github.io/uthash/) hash table for c structures.
 
+## Build build protobuf-c on linux:
 [protobuf c](https://github.com/protobuf-c/protobuf-c) C implementation of protocol buffers.
+
+```
+sudo apt install libprotobuf-dev
+sudo apt install libprotoc-dev
+sudo apt protobuf-compiler
+```
 
 # Этапы построения програмы на С/С++ (От исходного кода до испоняемого файла):
 
@@ -27,7 +34,3 @@
 - Компоновка
 
 Сбор в месте - объектного кода, стандартного кода запуска для установленной операционной системы и библиотечного кода - последующее их помещением в отдельный файл, который называется `исполняемый`
-
-# Install protobuf(protoc) on linux:
-
-`sudo apt install protobuf-compiler`
