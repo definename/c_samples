@@ -17,7 +17,8 @@ sudo apt install libprotobuf-dev
 sudo apt install libprotoc-dev
 sudo apt protobuf-compiler
 
-./autogen.sh && ./configure && make && make install
+./autogen.sh && ./configure && make
+sudo make install
 ```
 
 # Этапы построения програмы на С/С++ (От исходного кода до испоняемого файла):
