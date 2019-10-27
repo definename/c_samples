@@ -10,7 +10,7 @@
 
 [protobuf c](https://github.com/protobuf-c/protobuf-c) C implementation of protocol buffers.
 
-## Build build protobuf-c on linux:
+## Build protobuf-c on linux:
 
 ```
 sudo apt install libprotobuf-dev
