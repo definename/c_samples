@@ -21,6 +21,7 @@ sudo apt protobuf-compiler
 sudo make install
 ```
 
+After that you will see output like this:
 ```
 ----------------------------------------------------------------------
 Libraries have been installed in:
