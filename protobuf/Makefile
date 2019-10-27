@@ -1,7 +1,6 @@
 CWD = $(shell pwd)
 TEST_TARGET := test
 TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_SRC := main.c
 TEST_APP_OBJ := main.o
 
 PHONY :=
