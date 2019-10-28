@@ -1,8 +1,9 @@
 CWD = $(shell pwd)
-TEST_TARGET := protobuf
+TEST_TARGET := uthash
 TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o AMessage.pb-c.o
-TEST_APP_LINK_LIB :=protobuf-c
+TEST_APP_OBJ := main.o
+EXT_LIBS_INCLUDE_DIR := $(CWD)/libs
+CFLAGS := -I$(EXT_LIBS_INCLUDE_DIR)
 
 PHONY :=
 
@@ -10,7 +11,7 @@ PHONY += all
 all: $(TEST_APP_NAME)
 
 $(TEST_APP_NAME): $(TEST_APP_OBJ)
-	$(CC) -o $@  $(TEST_APP_OBJ) -l$(TEST_APP_LINK_LIB)
+	$(CC) -o $@  $(TEST_APP_OBJ)
 
 PHONY += clean
 clean:
