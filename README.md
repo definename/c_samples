@@ -10,7 +10,7 @@
 
 [protobuf c](https://github.com/protobuf-c/protobuf-c) C implementation of protocol buffers.
 
-[pthread](http://man7.org/linux/man-pages/man0/pthread.h.0p.html#top_of_page) pthreads
+[pthread](http://man7.org/linux/man-pages/man0/pthread.h.0p.html#top_of_page) POSIX Programmer's Manual 
 
 # Этапы построения програмы на С/С++ (От исходного кода до испоняемого файла):
 
