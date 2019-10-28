@@ -34,6 +34,7 @@ int main (int argc, const char * argv[]){
 
   hash_item_t *got_item;
   got_item = get_item(item->id);
+  printf("%p, %p\n", got_item, item);
   if (got_item){
     printf("Got item with id:%d\n", got_item->id);
 
