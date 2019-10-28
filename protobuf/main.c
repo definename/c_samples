@@ -2,28 +2,83 @@
 #include <stdlib.h>
 #include "AMessage.pb-c.h"
 
-int main (int argc, const char * argv[])
-{
-  AMessage msg = AMESSAGE__INIT; // AMessage
-  void *buf;                     // Buffer to store serialized data
-  unsigned len;                  // Length of serialized data
+void* pack(AMessage *msg, size_t *size);
+void unpack(void *buff, size_t* osize);
+
+int main (int argc, const char * argv[]){
+  AMessage *msg = NULL;
+  msg = malloc(sizeof(*msg));
+  amessage__init(msg);
+
+  //.......................................
+  void *buff = NULL;
+  size_t size;
+  buff = pack(msg, &size);
+  unpack(buff, &size);
+  //.......................................
   
-  if (argc != 2 && argc != 3)
-  {   // Allow one or two integers
-    fprintf(stderr,"usage: amessage a [b]\n");
-    return 1;
+  amessage__free_unpacked(msg, NULL);
+  if (buff){
+    printf("Free buffer\n");
+    free(buff);
   }
-  
-  msg.a = atoi(argv[1]);
-  if (argc == 3) { msg.has_b = 1; msg.b = atoi(argv[2]); }
-  len = amessage__get_packed_size(&msg);
-  
-  buf = malloc(len);
-  amessage__pack(&msg,buf);
-  
-  fprintf(stderr,"Writing %d serialized bytes\n",len); // See the length of message
-  fwrite(buf,len,1,stdout); // Write to stdout to allow direct command line piping
-  
-  free(buf); // Free the allocated serialized buffer
+  else{
+    printf("Invalid buffer pointer\n");
+  }
+
   return 0;
+}
+
+void* pack(AMessage *msg, size_t *osize){
+  void *buff = NULL;
+  if (msg){
+
+      //..........................................
+      msg->a = 11;
+      printf("packed a:%d\n", msg->a);
+      msg->has_b = 1;
+      msg->b = 99;
+      printf("packed b:%d\n", msg->b);
+      //..........................................
+
+    size_t packed_size;
+    packed_size = amessage__get_packed_size(msg);
+    *osize = packed_size;
+    if (packed_size){
+      buff = malloc(packed_size);
+      if (buff){
+        printf("Buffer has been successfully packed\n");
+        amessage__pack(msg, buff);
+      }
+      else{
+        printf("Failed to allocate memory for outgoing buffer\n");
+      }
+    }
+    else{
+      printf("Failed to retrieve required packed size\n");
+    }
+  }
+  else{
+    printf("Failed to pack message, invalid pointer was given\n");
+  }
+  return buff;
+}
+
+void unpack(void *buff, size_t* size){
+  if (buff){
+    AMessage *msg;
+    msg = amessage__unpack(NULL, *size, buff);
+
+    //..........................................
+    printf("unpacked a:%d\n", msg->a);
+    if (msg->has_b) {
+      printf("unpacked b:%d\n", msg->b);
+    }
+    //..........................................
+
+    amessage__free_unpacked(msg, NULL);
+  }
+  else{
+    printf("Failed to unpack message, invalid pointer was given\n");
+  }
 }
