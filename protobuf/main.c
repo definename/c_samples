@@ -21,6 +21,7 @@ int main (int argc, const char * argv[]){
   if (buff){
     printf("Free buffer\n");
     free(buff);
+    buff = NULL;
   }
   else{
     printf("Invalid buffer pointer\n");
