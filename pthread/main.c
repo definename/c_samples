@@ -21,9 +21,19 @@ typedef struct{
 
 void test_memset(void){
   test_struct_t test_struct;
-  printf("%d %d\n", test_struct.a, test_struct.b);
+  printf("test memset:%d %d\n", test_struct.a, test_struct.b);
   memset(&test_struct, 0, sizeof(test_struct_t));
-  printf("%d %d\n", test_struct.a, test_struct.b);
+  printf("test memset:%d %d\n", test_struct.a, test_struct.b);
+}
+
+void test_struct_init(test_struct_t *test){
+  if (test){
+    test->a = 1;
+    test->b = 2;
+  }
+  else{
+    printf("Invalid struct pointer was given\n");
+  }
 }
 
 
@@ -44,6 +54,12 @@ int main(){
 
   // .....................................................
   test_memset();
+
+  // .....................................................
+  test_struct_t test_struct;
+  test_struct_init(&test_struct);
+  printf("test struct init:%d %d\n", test_struct.a, test_struct.b);
+  test_struct_init(NULL);
 
   return 0;
 }
