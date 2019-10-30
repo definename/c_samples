@@ -8,9 +8,7 @@ void test_swap(void);
 void test_array(void);
 
 void test_func_ptr(void);
-
 typedef void(*request_done_t)(bool ok);
-
 typedef struct{
   int data;
   request_done_t done;
