@@ -16,13 +16,29 @@ typedef struct{
 } request_t;
 request_t* init_request(request_done_t done, int data);
 
+typedef int MyInt;
+typedef MyInt * MyIntPtr;
+void test_alias(void);
+
 int main (int argc, const char *argv[]){
 
   test_swap();
   test_array();
   test_func_ptr();
+  test_alias();
 
   return 0;
+}
+
+// .......................................................
+void test_alias(void){
+  MyInt i = 1;
+  printf("myint:%d\n", i);
+
+  MyIntPtr i_ptr = (MyIntPtr)malloc(sizeof(MyInt));
+  *i_ptr = 11;
+  printf("myint ptr:%d\n", *i_ptr);
+  free(i_ptr);
 }
 
 // .......................................................
