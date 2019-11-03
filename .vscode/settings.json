@@ -2,7 +2,9 @@
     "files.associations": {
         "*.py": "python",
         "*.c": "c",
-        "*.h": "c"
+        "*.h": "c",
+        "cinttypes": "c",
+        "cstdint": "c"
     },
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all"
