@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-
 
 struct
 {
@@ -14,7 +12,8 @@ struct
 };
 
 int main (int argc, const char *argv[]){
-  for (size_t i = 0; i < sizeof(desc)/sizeof(desc[0]); ++i){
+  const size_t size = sizeof(desc)/sizeof(desc[0]);
+  for (size_t i = 0; i < size; ++i){
     printf("%d %d\n", desc[i].a, desc[i].b);
   }
   return 0;
