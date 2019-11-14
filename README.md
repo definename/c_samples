@@ -50,9 +50,10 @@ printf("%zu", sizeof(int))
 # preprocessor and macro
 
 ```
-#define <name> <value>
+#define <name> <value> // pattern
+
 #define PI 3.4
 #define BEEP '\a'
-deinf #define 'a'
-#define "string"
+#define MYCHAR 'a'
+#define MYSTRING "string"
 ```
