@@ -51,7 +51,10 @@ printf("%zu", sizeof(int))
 
 ## macro and preprocessor
 
-Marco pattern looks: `#define <NAME> <VALUE>`
+Marco pattern: `#define <NAME> <VALUE>`
+
 Numeric constant: `#define PI 3.4`
+
 Char constant: `#define BEEP '\a'`, `#define MYCHAR 'a'`
-String constant: #define MYSTRING "string"
+
+String constant: `#define MYSTRING "string"`
