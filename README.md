@@ -49,12 +49,9 @@ printf("%zu", sizeof(int))
 
 Используете вы круглые скобки или нет, зависит от того, хотите вы получить размер типа:`sizeof(char)` или конкретной величины: `int i; sizeof i`. Круглые скобки `обязательны для типов`, но `необязательны для отдельный величин`.
 
-# macro and preprocessor
+## macro and preprocessor
 
-```
-#define <NAME> <VALUE>
-#define PI 3.4
-#define BEEP '\a'
-#define MYCHAR 'a'
-#define MYSTRING "string"
-```
+Marco pattern looks: `#define <NAME> <VALUE>`
+Numeric constant: `#define PI 3.4`
+Char constant: `#define BEEP '\a'`, `#define MYCHAR 'a'`
+String constant: #define MYSTRING "string"
