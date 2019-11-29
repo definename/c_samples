@@ -58,3 +58,14 @@ Numeric constant: `#define PI 3.4`
 Char constant: `#define BEEP '\a'`, `#define MYCHAR 'a'`
 
 String constant: `#define MYSTRING "string"`
+
+## valgrind
+
+Check memory leaks at exit:
+
+`valgrind --leak-check=full ./c_valgrind_app`
+
+Check where uninitialized variables is used:
+
+`valgrind --track-origins=yes ./c_valgrind_app`
+

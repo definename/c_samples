@@ -1,6 +1,6 @@
 .RECIPEPREFIX = >
 CWD = $(shell pwd)
-TEST_TARGET := c_macro
+TEST_TARGET := c_valgrind
 TEST_APP_NAME := $(TEST_TARGET)_app
 TEST_APP_OBJ := main.o
 
