@@ -1,5 +1,5 @@
 CWD = $(shell pwd)
-TEST_TARGET := cstruct
+TEST_TARGET := c_struct
 TEST_APP_NAME := $(TEST_TARGET)_app
 TEST_APP_OBJ := main.o
 
