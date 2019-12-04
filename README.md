@@ -4,6 +4,10 @@
 
 [gnu](http://www.gnu.org/) - GNU's not Unix
 
+# Samples
+
+[fsm](https://www.codeproject.com/Articles/1275479/State-Machine-Design-in-C)
+
 # Libraries:
 
 [ut hash](http://troydhanson.github.io/uthash/) hash table for c structures.
