@@ -6,7 +6,7 @@
 
 # Samples
 
-[fsm](https://www.codeproject.com/Articles/1275479/State-Machine-Design-in-C)
+[fsm](https://www.codeproject.com/Articles/1275479/State-Machine-Design-in-C) - finite state machine
 
 # Libraries:
 
