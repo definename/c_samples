@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-void insert_sort(int* arr, const int size);
 void bubble_sort(int* arr, const int size);
+void insert_sort(int* arr, const int size);
 
 void print_arr(int* arr, const int size);
 
