@@ -20,14 +20,31 @@ typedef int MyInt;
 typedef MyInt * MyIntPtr;
 void test_alias(void);
 
-int main (int argc, const char *argv[]){
+void test_free(int* i);
 
-  test_swap();
-  test_array();
-  test_func_ptr();
-  test_alias();
+int main (int argc, const char *argv[]) {
+  // test_swap();
+  // test_array();
+  // test_func_ptr();
+  // test_alias();
+
+  while (true) {
+    int* i = malloc(sizeof(int));
+    test_free(i);
+    if (i) {
+      printf("Double free!!!\n");
+      free(i);
+    }
+  }
 
   return 0;
+}
+
+void test_free(int* i) {
+  *i = 1;
+  printf("%d\n", *i);
+  free(i);
+  i = NULL;
 }
 
 // .......................................................
