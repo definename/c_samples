@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct
 {
@@ -14,15 +15,21 @@ struct
 typedef struct {
   int i;
   const int j;
-  const char* name;
+  char* name;
+  const char* name_const;
 } test_t;
+
+#define TEST_NAME "NAME"
 
 #define TEST_DEFAULT \
 { \
   .i = 11, \
   .j = 22, \
-  .name = "NAME", \
+  .name = NULL, \
+  .name_const = TEST_NAME, \
 } \
+
+void test_leak(const char* name);
 
 int main (int argc, const char *argv[]) {
   //.....................................................
@@ -37,7 +44,22 @@ int main (int argc, const char *argv[]) {
 
   //.....................................................
   test_t test = TEST_DEFAULT;
-  printf("i:%d j:%d name:%s\n", test.i, test.j, test.name);
+  printf("i:%d j:%d name:%s\n", test.i, test.j, test.name_const);
 
+  //.....................................................
+  test_leak(TEST_NAME);
   return 0;
+}
+
+void test_leak(const char* name) {
+  test_t t = {.i = 1, .j = 2};
+  size_t size = strlen(name) + 1;
+  t.name = malloc(sizeof(char) * size);
+  strcpy(t.name, name);
+  printf("t name:%s %p\n", t.name, t.name);
+
+  test_t tt = t;
+  printf("tt name:%s %p\n", tt.name, tt.name);
+
+  free(tt.name);
 }
