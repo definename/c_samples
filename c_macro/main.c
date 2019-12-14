@@ -13,16 +13,15 @@ typedef enum {
   ITEM_UNKNOWN
 } item_t;
 
-void test_enum_to_str(const item_t item) {
+#define CASE_TO_STR(x) case x: return ENUM_TO_STR(x);
+
+const char* item_to_str(int item) {
+  const char* ret;
   switch(item) {
-    case ONE_ITEM:
-    printf("%s\n", ENUM_TO_STR(ONE_ITEM));
-    break;
-    case TWO_ITEM:
-    printf("%s\n", ENUM_TO_STR(ONE_ITEM));
-    break;
+    case ONE_ITEM: ENUM_TO_STR(ONE_ITEM);
+    CASE_TO_STR(TWO_ITEM)
     default:
-    printf("%s\n", ENUM_TO_STR(ITEM_UNKNOWN));
+    return ENUM_TO_STR(ITEM_UNKNOWN);
   }
 }
 
@@ -30,8 +29,10 @@ int main (int argc, const char * argv[]){
   printf("Macro stringify:%s\n", g(f(1,2)));
   printf("Macro concatenate:%s\n", h(f(1,2)));
 
-  test_enum_to_str(ONE_ITEM);
-  test_enum_to_str(TWO_ITEM);
-  test_enum_to_str(99);
+  printf("..%s\n", ENUM_TO_STR(ONE_ITEM));
+
+  for (int i = 0; i < 4; ++i) {
+    printf("%s(%d)\n", item_to_str(i), i);
+  }
   return 0;
 }
