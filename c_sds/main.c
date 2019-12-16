@@ -13,7 +13,12 @@ int main (int argc, const char * argv[]){
 
   test_sds(s);
 
+  s = sdscpy(s, "new");
+
+  test_sds(s);
+
   sdsfree(s);
+  s = NULL;
   return 0;
 }
 
