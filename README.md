@@ -6,6 +6,8 @@
 
 [make](http://www.gnu.org/software/make/) - GNU Make is a tool which controls the generation of executables
 
+[gdb](https://www.gnu.org/software/gdb/) - The GNU Project Debugger
+
 # Samples
 
 [fsm](https://www.codeproject.com/Articles/1275479/State-Machine-Design-in-C) - finite state machine
