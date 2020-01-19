@@ -3,6 +3,7 @@
 Язык `С++` добавляет к языку `С` инструментальные средства объектно-ориентированного программирования.
 
 [gnu](http://www.gnu.org/) - GNU's not Unix
+
 [make](http://www.gnu.org/software/make/) - GNU Make is a tool which controls the generation of executables
 
 # Samples
