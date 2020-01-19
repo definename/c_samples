@@ -4,9 +4,13 @@
 
 [gnu](http://www.gnu.org/) - GNU's not Unix
 
+# Manual
+
 [make](http://www.gnu.org/software/make/) - GNU Make is a tool which controls the generation of executables
 
 [gdb](https://www.gnu.org/software/gdb/) - The GNU Project Debugger
+
+[gcc](https://www.gnu.org/software/gcc/) - The GNU Compiler Collection
 
 # Samples
 
