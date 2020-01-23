@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define MAX_ALLOCS 2000000
+#define MAX_ALLOCS 256
 
 static void display_mallinfo(void)
 {
@@ -22,27 +22,18 @@ static void display_mallinfo(void)
     printf("Total allocated space (uordblks):      %d\n", mi.uordblks);
     printf("Total free space (fordblks):           %d\n", mi.fordblks);
     printf("Topmost releasable block (keepcost):   %d\n", mi.keepcost);
+    printf("................................\n");
 }
 
 int main (int argc, const char * argv[]) {
   display_mallinfo();
-  int *i = malloc(sizeof(int));
-  while (1)
-  {
-    if (i) {
-      free(i);
-      i = NULL;
-      printf("free");
-    }
-    else {
-      i = malloc(sizeof(int));
-      printf("malloc");
-    }
-
-    printf("..............%zu\n", sizeof(int));
+  while(1) {
+    int *i = malloc(sizeof(int));
+    free(i);
     display_mallinfo();
-    sleep(2);
+    sleep(1);
   }
+  // display_mallinfo();
 
   // char *alloc[MAX_ALLOCS];
   // int numBlocks, j, freeBegin, freeEnd, freeStep;

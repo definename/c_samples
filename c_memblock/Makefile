@@ -1,5 +1,5 @@
 .RECIPEPREFIX = >
-TEST_TARGET := c_malloc
+TEST_TARGET := c_memblock
 TEST_APP_NAME := $(TEST_TARGET)_app
 TEST_APP_OBJ := main.o
 
