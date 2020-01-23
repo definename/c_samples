@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+message Sub1 {
+  optional int32 b_a = 1;
+}
+
+message Base {
+    required int32 a = 1; 
+    optional int32 b = 2;
+    optional bytes c = 3;
+  }

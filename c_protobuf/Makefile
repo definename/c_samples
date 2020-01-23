@@ -1,9 +1,8 @@
 .RECIPEPREFIX = >
-CWD = $(shell pwd)
-TEST_TARGET := protobuf
+TEST_TARGET := c_protobuf
 TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o AMessage.pb-c.o
-TEST_APP_LINK_LIB :=protobuf-c
+TEST_APP_OBJ := main.o MessageBase.pb-c.o
+TEST_APP_LINK_LIB := protobuf-c
 
 PHONY :=
 
