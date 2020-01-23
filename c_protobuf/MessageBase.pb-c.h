@@ -27,8 +27,8 @@ typedef struct _Base Base;
 struct  _Sub1
 {
   ProtobufCMessage base;
-  protobuf_c_boolean has_b_a;
-  int32_t b_a;
+  protobuf_c_boolean has_sub_a;
+  int32_t sub_a;
 };
 #define SUB1__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&sub1__descriptor) \
@@ -38,11 +38,11 @@ struct  _Sub1
 struct  _Base
 {
   ProtobufCMessage base;
-  int32_t a;
-  protobuf_c_boolean has_b;
-  int32_t b;
-  protobuf_c_boolean has_c;
-  ProtobufCBinaryData c;
+  int32_t base_a;
+  protobuf_c_boolean has_base_b;
+  int32_t base_b;
+  protobuf_c_boolean has_base_c;
+  ProtobufCBinaryData base_c;
 };
 #define BASE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&base__descriptor) \

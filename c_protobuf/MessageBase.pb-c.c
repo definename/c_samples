@@ -100,12 +100,12 @@ void   base__free_unpacked
 static const ProtobufCFieldDescriptor sub1__field_descriptors[1] =
 {
   {
-    "b_a",
+    "sub_a",
     1,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_INT32,
-    offsetof(Sub1, has_b_a),
-    offsetof(Sub1, b_a),
+    offsetof(Sub1, has_sub_a),
+    offsetof(Sub1, sub_a),
     NULL,
     NULL,
     0,             /* flags */
@@ -113,7 +113,7 @@ static const ProtobufCFieldDescriptor sub1__field_descriptors[1] =
   },
 };
 static const unsigned sub1__field_indices_by_name[] = {
-  0,   /* field[0] = b_a */
+  0,   /* field[0] = sub_a */
 };
 static const ProtobufCIntRange sub1__number_ranges[1 + 1] =
 {
@@ -138,36 +138,36 @@ const ProtobufCMessageDescriptor sub1__descriptor =
 static const ProtobufCFieldDescriptor base__field_descriptors[3] =
 {
   {
-    "a",
+    "base_a",
     1,
     PROTOBUF_C_LABEL_REQUIRED,
     PROTOBUF_C_TYPE_INT32,
     0,   /* quantifier_offset */
-    offsetof(Base, a),
+    offsetof(Base, base_a),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "b",
+    "base_b",
     2,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_INT32,
-    offsetof(Base, has_b),
-    offsetof(Base, b),
+    offsetof(Base, has_base_b),
+    offsetof(Base, base_b),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "c",
+    "base_c",
     3,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_BYTES,
-    offsetof(Base, has_c),
-    offsetof(Base, c),
+    offsetof(Base, has_base_c),
+    offsetof(Base, base_c),
     NULL,
     NULL,
     0,             /* flags */
@@ -175,9 +175,9 @@ static const ProtobufCFieldDescriptor base__field_descriptors[3] =
   },
 };
 static const unsigned base__field_indices_by_name[] = {
-  0,   /* field[0] = a */
-  1,   /* field[1] = b */
-  2,   /* field[2] = c */
+  0,   /* field[0] = base_a */
+  1,   /* field[1] = base_b */
+  2,   /* field[2] = base_c */
 };
 static const ProtobufCIntRange base__number_ranges[1 + 1] =
 {
