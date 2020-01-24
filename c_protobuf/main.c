@@ -99,11 +99,31 @@ void sub1_dump(const sub1_msg_t *sub1_msg) {
   }
 }
 
-void test_pack_unpack();
+void* test_repack_sub1(void *base_buff, const size_t base_size, size_t* repacked_size) {
+  void *repacked_buff = NULL;
+  *repacked_size = 0;
 
-int main (int argc, const char * argv[]) {
-  test_pack_unpack();
-  return 0;
+  if (base_buff) {
+    base_msg_t *base_unpacked = unpack_base(base_size, base_buff);
+
+    sub1_msg_t *sub1_changed = unpack_sub1_msg(base_unpacked->base_c.len, base_unpacked->base_c.data);
+    sub1_changed->has_sub_a = true;
+    sub1_changed->sub_a = 999;
+
+    size_t sub1_size_repacked;
+    void *sub1_buff_repacked = pack_sub1_msg(sub1_changed, &sub1_size_repacked);
+
+    base_msg_t* base_changed = build_base(base_unpacked->base_a, base_unpacked->base_b, sub1_buff_repacked, sub1_size_repacked);
+
+    base__free_unpacked(base_unpacked, NULL);
+    sub1__free_unpacked(sub1_changed, NULL);
+
+    repacked_buff = pack_base(base_changed, &(*repacked_size));
+
+    base__free_unpacked(base_changed, NULL);
+  }
+
+  return repacked_buff;
 }
 
 void test_pack_unpack() {
@@ -121,18 +141,34 @@ void test_pack_unpack() {
     void* base_buff = pack_base(base_msg_, &base_size);
     base__free_unpacked(base_msg_, NULL);
 
-    base_msg_t *_base_msg = unpack_base(base_size, base_buff);
-    sub1_msg_t *_sub1_msg = unpack_sub1_msg(_base_msg->base_c.len, _base_msg->base_c.data);
+    //.....................................
 
-    sub1_dump(_sub1_msg);
-    base_dump(_base_msg);
+    size_t base_size_repacked;
+    void* base_buff_repacked = test_repack_sub1(base_buff, base_size, &base_size_repacked);
+    if (base_buff_repacked) {
 
-    sub1__free_unpacked(_sub1_msg, NULL);
-    base__free_unpacked(_base_msg, NULL);
+      base_msg_t *_base_msg = unpack_base(base_size_repacked, base_buff_repacked);
+      sub1_msg_t *_sub1_msg = unpack_sub1_msg(_base_msg->base_c.len, _base_msg->base_c.data);
 
+      sub1_dump(_sub1_msg);
+      base_dump(_base_msg);
+
+      sub1__free_unpacked(_sub1_msg, NULL);
+      base__free_unpacked(_base_msg, NULL);
+
+      free(base_buff_repacked);
+      base_buff_repacked = NULL;
+    }
+
+    //.....................................
     free(base_buff);
     base_buff = NULL;
 
     count--;
   }
+}
+
+int main (int argc, const char * argv[]) {
+  test_pack_unpack();
+  return 0;
 }
