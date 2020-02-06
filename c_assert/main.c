@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <assert.h>
 #include "config.h"
 
 #define log_debug(format, ...) printf(format, ##__VA_ARGS__)
