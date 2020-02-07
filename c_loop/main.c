@@ -17,7 +17,23 @@ void c_loop2(void) {
   }
 }
 
+long get_long(void) {
+  long l;
+  char ch;
+  while (scanf("%ld", &l) != 1) {
+    while ((ch = getchar()) != '\n') {
+      log_debug("Invalid input:%c\n", ch);
+    }
+  }
+  while ((ch = getchar()) != '\n') {
+    continue;
+  }
+  return l;
+}
+
 int main (int argc, const char *argv[]) {
+  log_debug("get_long\n");
+  get_long();
   log_debug("Loop1\n");
   c_loop1();
   log_debug("Loop2\n");
