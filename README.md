@@ -26,7 +26,7 @@
 
 [pthread](http://man7.org/linux/man-pages/man0/pthread.h.0p.html#top_of_page) POSIX Programmer's Manual 
 
-# Этапы построения програмы на С/С++ (От исходного кода до испоняемого файла):
+## Этапы построения програмы на С/С++ (От исходного кода до испоняемого файла):
 
 - Препроцессор
 
@@ -82,4 +82,10 @@ Check memory leaks at exit:
 Check where uninitialized variables is used:
 
 `valgrind --track-origins=yes ./c_valgrind_app`
+
+## Function
+
+`Фактический аргумент` - это выражения, указанное в круглых скобках при вызове функции
+
+`Формальный параметр` - это перменная, объявленная в заголовке определения функции
 
