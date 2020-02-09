@@ -1,11 +1,23 @@
 #include <stdio.h>
 #include <malloc.h>
 
+#define COUNT_OF(arr) (sizeof(arr)/sizeof(arr[0]))
 #define log_debug(format, ...) printf(format, ##__VA_ARGS__)
 
-int main (int argc, const char * argv[]) {
+void test_2d_array(unsigned int count);
+void test_loop_array1(int arr[], const size_t size);
+void test_loop_array2(int* start, int* end);
 
-  int count = 1;
+int main (int argc, const char * argv[]) {
+  test_2d_array(1);
+
+  int arr[] = { 1, [9] = 10 };
+  test_loop_array1(arr, COUNT_OF(arr));
+  test_loop_array2(arr, arr + COUNT_OF(arr));
+  return 0;
+}
+
+void test_2d_array(unsigned int count) {
   while (count)
   {
     int **a;
@@ -30,6 +42,19 @@ int main (int argc, const char * argv[]) {
     }
     --count;
   }
+}
 
-  return 0;
+void test_loop_array1(int arr[], const size_t size) {
+  for (size_t i = 0; i < size; ++i) {
+    log_debug("%d, ", arr[i]);
+  }
+  log_debug("\n");
+}
+
+void test_loop_array2(int* start, int* end) {
+  while (start < end) {
+    log_debug("%d, ", *start);
+    ++start;
+  }
+  log_debug("\n");
 }
