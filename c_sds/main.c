@@ -15,6 +15,9 @@ int main (int argc, const char * argv[]){
 
   s = sdscpy(s, "new");
 
+  // Segfault here.
+  // const int n = sdscmp(s, NULL);
+
   test_sds(s);
 
   sdsfree(s);

@@ -4,6 +4,10 @@ TEST_TARGET := c_sds
 TEST_APP_NAME := $(TEST_TARGET)_app
 TEST_APP_OBJ := main.o sds.o
 
+
+CFLAGS :=
+CFLAGS += -g
+
 PHONY :=
 
 PHONY += all
