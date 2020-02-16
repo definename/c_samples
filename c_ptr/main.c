@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "test_double_free.h"
+#include "test_free.h"
+
 void my_swap(int *a, int *b);
 void test_swap(void);
 
@@ -22,29 +25,16 @@ void test_alias(void);
 
 void test_free(int* i);
 
+
 int main (int argc, const char *argv[]) {
   // test_swap();
   // test_array();
   // test_func_ptr();
   // test_alias();
-
-  while (true) {
-    int* i = malloc(sizeof(int));
-    test_free(i);
-    if (i) {
-      printf("Double free!!!\n");
-      free(i);
-    }
-  }
+  // test_double_free();
+  test_no_double_free();
 
   return 0;
-}
-
-void test_free(int* i) {
-  *i = 1;
-  printf("%d\n", *i);
-  free(i);
-  i = NULL;
 }
 
 // .......................................................
