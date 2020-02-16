@@ -5,6 +5,7 @@ TEST_APP_OBJ := main.o test_free.o test_double_free.o
 
 CFLAGS :=
 CFLAGS += -g
+CFLAGS += -I./..
 
 PHONY :=
 

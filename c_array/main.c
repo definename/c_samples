@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <malloc.h>
 
+#include "test_compound_literal.h"
+
 #define COUNT_OF(arr) (sizeof(arr)/sizeof(arr[0]))
 #define log_debug(format, ...) printf(format, ##__VA_ARGS__)
 
@@ -9,11 +11,15 @@ void test_loop_array1(int arr[], const size_t size);
 void test_loop_array2(int* start, int* end);
 
 int main (int argc, const char * argv[]) {
-  test_2d_array(1);
+  // test_2d_array(1);
 
-  int arr[] = { 1, [9] = 10 };
-  test_loop_array1(arr, COUNT_OF(arr));
-  test_loop_array2(arr, arr + COUNT_OF(arr));
+  // int arr[] = { 1, [9] = 10 };
+  // test_loop_array1(arr, COUNT_OF(arr));
+  // test_loop_array2(arr, arr + COUNT_OF(arr));
+
+  test_compound_literal_arr1d();
+  test_compound_literal_arr2d();
+
   return 0;
 }
 
