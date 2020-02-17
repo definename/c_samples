@@ -1,7 +1,7 @@
 .RECIPEPREFIX = >
-TEST_TARGET := c_array
+TEST_TARGET := c_posix_time
 TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o test_compound_literal.o
+TEST_APP_OBJ := main.o
 
 CFLAGS :=
 CFLAGS += -g
@@ -13,7 +13,7 @@ PHONY += all
 all: $(TEST_APP_NAME)
 
 $(TEST_APP_NAME): $(TEST_APP_OBJ)
->$(CC) -o $@  $(TEST_APP_OBJ)
+>$(CC) -o $@  $(TEST_APP_OBJ) -lm
 
 PHONY += clean
 clean:
