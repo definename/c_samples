@@ -7,13 +7,15 @@ CFLAGS :=
 CFLAGS += -g
 CFLAGS += -I./..
 
-PHONY :=
+LIBS :=
+LIBS += -lm
 
+PHONY :=
 PHONY += all
 all: $(TEST_APP_NAME)
 
 $(TEST_APP_NAME): $(TEST_APP_OBJ)
->$(CC) -o $@  $(TEST_APP_OBJ) -lm
+>$(CC) -o $@  $(TEST_APP_OBJ) $(LIBS)
 
 PHONY += clean
 clean:
