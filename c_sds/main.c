@@ -15,8 +15,12 @@ int main (int argc, const char * argv[]){
 
   s = sdscpy(s, "new");
 
-  // Segfault here.
+  // Segmentation fault here.
   // const int n = sdscmp(s, NULL);
+
+  // Segmentation fault here.
+  // sds origin = NULL;
+  // sds dup = sdsdup(origin);
 
   test_sds(s);
 
