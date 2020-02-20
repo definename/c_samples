@@ -2,6 +2,7 @@
 #define HASH_UTIL
 
 #include "uthash/uthash.h"
+#include <stdbool.h>
 
 typedef struct {
   int id;
@@ -14,7 +15,7 @@ typedef struct {
 } hash_t;
 
 void hash_init(hash_t *h);
-void add_item(hash_t *h, hash_item_t *item);
+bool add_item(hash_t *h, hash_item_t *item);
 hash_item_t *get_item(hash_t *h, int id);
 void delete_item(hash_t *h, hash_item_t *item);
 
