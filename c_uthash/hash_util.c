@@ -5,16 +5,11 @@ void hash_init(hash_t *h) {
   h->head = NULL;
 }
 
-bool add_item(hash_t *h, hash_item_t *item) {
-    bool res = false;
-    hash_item_t *i = NULL;
-    i = get_item(h, item->id);
-    if (i == NULL) {
-        log_debug("Item is being added to the hash:%d\n", item->id);
-        HASH_ADD_INT(h->head, id, item);
-        res = true;
-    }
-    return res;
+hash_item_t* add_item_int(hash_t *h, hash_item_t *item) {
+    hash_item_t *item_replaced = NULL;
+    HASH_REPLACE_INT(h->head, id, item, item_replaced);
+    log_debug("Item is being added to the hash:%d\n", item->id);
+    return item_replaced;
 }
 
 hash_item_t *get_item(hash_t *h, int id) {
@@ -26,4 +21,8 @@ hash_item_t *get_item(hash_t *h, int id) {
 
 void delete_item(hash_t *h, hash_item_t *item) {
   HASH_DEL(h->head, item);
+}
+
+size_t get_size(hash_t *h) {
+    return HASH_COUNT(h->head);
 }

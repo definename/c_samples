@@ -15,8 +15,9 @@ typedef struct {
 } hash_t;
 
 void hash_init(hash_t *h);
-bool add_item(hash_t *h, hash_item_t *item);
+hash_item_t* add_item_int(hash_t *h, hash_item_t *item);
 hash_item_t *get_item(hash_t *h, int id);
 void delete_item(hash_t *h, hash_item_t *item);
+size_t get_size(hash_t *h);
 
 #endif // HASH_UTIL
