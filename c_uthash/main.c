@@ -1,15 +1,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <inttypes.h>
 
 #include "test_util.h"
 #include "hash_util.h"
 
+uint64_t get_hash(const char* some_str) {
+    uint64_t hashv = 0;
+    HASH_VALUE(some_str, strlen(some_str), hashv);
+    return hashv;
+}
+
 int main (int argc, const char * argv[]) {
     int count = 1;
+    char name[] = "Name1";
     while (count)
     {
-        char name[] = "Name1";
         hash_item_t *item = malloc(sizeof(hash_item_t));
         item->id = 99;
         strcpy(item->name, name);
@@ -45,6 +52,9 @@ int main (int argc, const char * argv[]) {
             got_item = NULL;
         }
         --count;
+
+        uint64_t hashv = get_hash(name);
+        log_debug("%"PRIu64"\n", hashv);
     }
     return 0;
 }
