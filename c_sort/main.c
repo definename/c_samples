@@ -65,8 +65,8 @@ void selection_sort(int32_t arr[], const size_t size) {
         for (size_t j = i + 1; j < size; ++j) {
             if (arr[i] > arr[j]) {
                 swap(&arr[i], &arr[j]);
-                }
             }
+        }
         print_arr(arr, size);
     }
 }
