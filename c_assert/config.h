@@ -2,8 +2,7 @@
 #define CONFIG_H
 
 #include "stddef.h"
-
-#define COUNT_OF(arr) (sizeof(arr)/sizeof(arr[0]))
+#include "test_util.h"
 
 typedef struct {
     int key;

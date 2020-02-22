@@ -1,8 +1,11 @@
 .RECIPEPREFIX = >
-CWD = $(shell pwd)
 TEST_TARGET := c_sort
 TEST_APP_NAME := $(TEST_TARGET)_app
 TEST_APP_OBJ := main.o
+
+CFLAGS :=
+CFLAGS += -g
+CFLAGS += -I./..
 
 PHONY :=
 
