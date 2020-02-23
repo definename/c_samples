@@ -4,7 +4,8 @@
         "*.c": "c",
         "*.h": "c",
         "cinttypes": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "cstdlib": "c"
     },
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all"
