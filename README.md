@@ -121,3 +121,11 @@ Check where uninitialized variables is used:
 ## malloc/free
 
 `double *d = (double*)malloc(n * sizeof(double))` - приведение к `double *` не обязательно в `c`, но требуется в `c++`, поэтому использование приведения типа упрощает перенос программы из `c` в `c++`
+
+## storage classes
+ `auto` - автоматическая переменная имеет область видимости блока в коротом она определена.
+```
+int main(void) {
+auto int var = 1;
+}
+```
