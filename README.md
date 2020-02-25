@@ -137,3 +137,9 @@ int main(void) {
  register int quick = 1
 }
 ```
+
+`static, with no linkage` - статическая без связывания
+
+`static, with internal linkage` - статическая с внутренним связыванием
+
+`static, with external linkage` - статическая с внешним связыванием
