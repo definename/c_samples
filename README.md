@@ -139,14 +139,14 @@ void func(void) {
 ```
 source.c
 ..............................
-int extenral_linkage_var = 1;
+int external_linkage_var = 1;
 
 void func(void) {
  ...
 
 main.c
 ..............................
-extern int extenral_linkage_var;
+extern int external_linkage_var;
 
 int main(void) {
  ...
