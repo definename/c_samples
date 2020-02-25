@@ -73,16 +73,6 @@ Char constant: `#define BEEP '\a'`, `#define MYCHAR 'a'`
 
 String constant: `#define MYSTRING "string"`
 
-## valgrind
-
-Check memory leaks at exit:
-
-`valgrind --leak-check=full ./c_valgrind_app`
-
-Check where uninitialized variables is used:
-
-`valgrind --track-origins=yes ./c_valgrind_app`
-
 ## function
 
 `Фактический аргумент` - это выражения, указанное в круглых скобках при вызове функции
@@ -138,7 +128,7 @@ int main(void) {
 }
 ```
 
-`static, with no linkage` - статическая без связывания
+`static, with no linkage` - статическая без связывания характеризуется статической продолжительность хранения, областью видимости в перделах блока и отсутствием связывания. Такая переменная инициализируется только один раз на этапе компиляции. Если она не инициализированна явно, ее биты устанавливаются в 0.
 
 `static, with internal linkage` - статическая с внутренним связыванием
 
