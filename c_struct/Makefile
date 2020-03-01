@@ -1,6 +1,8 @@
 TEST_TARGET := c_struct
 TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o test_struct_compound_literal.o
+TEST_APP_OBJ := main.o \
+			test_struct_compound_literal.o \
+			test_anonymous_struct.o
 
 CFLAGS :=
 CFLAGS += -g
