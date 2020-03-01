@@ -1,7 +1,10 @@
-CWD = $(shell pwd)
 TEST_TARGET := c_struct
 TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o
+TEST_APP_OBJ := main.o test_struct_compound_literal.o
+
+CFLAGS :=
+CFLAGS += -g
+CFLAGS += -I./..
 
 PHONY :=
 
