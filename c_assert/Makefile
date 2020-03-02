@@ -3,6 +3,10 @@ TEST_TARGET := c_assert
 TEST_APP_NAME := $(TEST_TARGET)_app
 TEST_APP_OBJ := main.o config.o
 
+CFLAGS :=
+CFLAGS += -g
+CFLAGS += -I./..
+
 PHONY :=
 
 PHONY += all

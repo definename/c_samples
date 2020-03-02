@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "test_util.h"
+
+#include "test_struct_compound_literal.h"
+#include "test_anonymous_struct.h"
 
 struct
 {
@@ -48,6 +52,10 @@ int main (int argc, const char *argv[]) {
 
   //.....................................................
   test_leak(TEST_NAME);
+
+  test_struct_compound_literal();
+
+  test_anonymous_struct();
   return 0;
 }
 

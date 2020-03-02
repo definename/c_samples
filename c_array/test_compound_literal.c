@@ -37,8 +37,8 @@ static void test_iterate2d_arr(const int (*arr)[COLS], const size_t rows)
 static void test_iterate1d_arr(const int *arr, const size_t size)
 // static void test_iterate1d_arr(const int arr[], const size_t size)
 {
-    for (size_t i = 0; i < COLS; ++i) {
-        log_debug("%d, ", arr[i]);
+    for (size_t c = 0; c < COLS; ++c) {
+        log_debug("%d, ", arr[c]);
     }
     log_debug("\n");
 }

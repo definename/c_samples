@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <malloc.h>
 
+#include "test_util.h"
 #include "test_compound_literal.h"
-
-#define COUNT_OF(arr) (sizeof(arr)/sizeof(arr[0]))
-#define log_debug(format, ...) printf(format, ##__VA_ARGS__)
+#include "test_flexible_array.h"
 
 void test_2d_array(unsigned int count);
 void test_loop_array1(int arr[], const size_t size);
@@ -19,6 +18,7 @@ int main (int argc, const char * argv[]) {
 
   test_compound_literal_arr1d();
   test_compound_literal_arr2d();
+  test_flexible_array();
 
   return 0;
 }

@@ -1,7 +1,7 @@
 .RECIPEPREFIX = >
-TEST_TARGET := c_sort
+TEST_TARGET := c_linkage
 TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o
+TEST_APP_OBJ := main.o external_linkage.o internal_linkage.o
 
 CFLAGS :=
 CFLAGS += -g

@@ -31,12 +31,21 @@ long get_long(void) {
   return l;
 }
 
+int my_put(const char * string) {
+  while (string && *string) {
+    putchar(*string);
+    string++;
+  }
+}
+
 int main (int argc, const char *argv[]) {
-  log_debug("get_long\n");
-  get_long();
-  log_debug("Loop1\n");
-  c_loop1();
-  log_debug("Loop2\n");
-  c_loop2();
+  my_put(NULL);
+  my_put("My put\n");
+  // log_debug("get_long\n");
+  // get_long();
+  // log_debug("Loop1\n");
+  // c_loop1();
+  // log_debug("Loop2\n");
+  // c_loop2();
   return 0;
 }
