@@ -3,7 +3,10 @@
 
 struct person {
     int id;
-    struct {char first[20]; char last[20];};
+    struct {
+        char first[20];
+        char last[20];
+    };
 };
 
 void test_anonymous_struct(void) {

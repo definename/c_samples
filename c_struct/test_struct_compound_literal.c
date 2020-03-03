@@ -20,6 +20,11 @@ void test_struct_compound_literal(void) {
     double area = rect_area(r);
     log_debug("rect area:%.02f\n", area);
 
-    double areap = rect_areap(&(struct rect) { 4.0, 3.0});
+    struct rect *rp = NULL;
+    rp = &(struct rect) { 
+        .x = 4.0,
+        .y = 3.0
+        };
+    double areap = rect_areap(rp);
     log_debug("rect areap:%.02f\n", areap);
 }
