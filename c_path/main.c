@@ -8,8 +8,6 @@
 #include <limits.h>
 #include <libgen.h>
 
-#define CWD "/root/xxx/yyy/zzz"
-
 static char* get_cwd(void) {
     char *cwd = malloc(PATH_MAX);
     if (cwd) {
@@ -26,8 +24,10 @@ static char* simplify_path(const char* const path) {
     if (tmp = strdup(path)) {
         char *dir = NULL;
         if (dir = malloc(PATH_MAX)) {
+            memset(dir, 0, PATH_MAX);
             char *to_reverse = NULL;
             if (to_reverse = malloc(PATH_MAX)) {
+                memset(to_reverse, 0, PATH_MAX);
                 if (*path == '/') {
                     strcpy(to_reverse, "/");
                 } else {
@@ -38,8 +38,8 @@ static char* simplify_path(const char* const path) {
                 int skip = 0;
                 do {
                     if (p = strrchr(tmp, '/')) {
-                        char *cur = p + 1;
-                        if (strcmp(cur, ".") != 0 && strcmp(cur, "") != 0) {
+                        if (strcmp(p, "/.") != 0 && strcmp(p, "/") != 0) {
+                            const char * const cur = p + 1;
                             if (strcmp(cur, "..") == 0) {
                                 skip++;
                             } else if (skip != 0) {
@@ -68,6 +68,7 @@ static char* simplify_path(const char* const path) {
                 }
 
                 if (reverse = malloc(PATH_MAX)) {
+                    memset(reverse, 0, PATH_MAX);
                     if (*path == '/') {
                         strcpy(reverse, "/");
                     } else {
@@ -78,9 +79,8 @@ static char* simplify_path(const char* const path) {
                     p = NULL;
                     do {
                         if (p = strrchr(to_reverse, '/')) {
-                            char *cur = p + 1;
-                            if (strcmp(cur, "") != 0) {
-                                strcat(reverse, cur);
+                            if (strcmp(p, "/") != 0) {
+                                strcat(reverse, p + 1);
                                 strcat(reverse, "/");
                             }
                             *p = '\0';
@@ -89,7 +89,7 @@ static char* simplify_path(const char* const path) {
 
                     if (to_reverse && strcmp(to_reverse, "") != 0) {
                         strcat(reverse, to_reverse);
-                        strcat(to_reverse, "/");
+                        strcat(reverse, "/");
                     }
                 } else {
                     log_debug("Failed to alloc reverse string\n");
@@ -112,36 +112,62 @@ static char* simplify_path(const char* const path) {
     return reverse;
 }
 
-int main (int argc, const char * argv[]) {
-    char* test1 = malloc(PATH_MAX);
-    const char *test1_res = "/root/xxx/dir1/dir2/dir3/";
-// #define CWD "/../../../../../a"
-// #define CWD "/a/.."
-// #define CWD "/a/./b/../../c/"
-// #define CWD "/a/.."
-// #define CWD "/home"
-    if (test1) {
-        strcpy(test1, CWD);
-        strcat(test1, "/");
-        strcat(test1, "../../dir1/dir2/dir3");
+bool test(const char* const test_path, const char* const test_expected) {
+    log_debug("TEST PATH:%s\n", STRSAFE(test_path));
+    char *test_result = simplify_path(test_path);
+    log_debug("SIMPLIFY:%s EXPECTED:%s\n", STRSAFE(test_result), STRSAFE(test_expected));
 
-        for (int i = 0; i != 100; ++i) {
-            log_debug("Cwd:%s\n", STRSAFE(test1));
-            char *test1_res = simplify_path(test1);
-            log_debug("Test1 res:%s\n", STRSAFE(test1_res));
-            if (strcmp(test1_res, "")) {
-                log_debug("TEST1 OK\n");
-            } else {
-                log_debug("TEST1 NOK");
-            }
-            free(test1_res);
-            test1_res = NULL;
-        }
-
-        free(test1);
-        test1 = NULL;
+    bool res = false;
+    if (strcmp(test_result, test_expected) == 0) {
+        log_debug("TEST1 OK\n");
+        res = true;
     } else {
-        log_debug("Failed to alloc test\n");
+        log_debug("TEST1 NOK\n");
+        res = false;
     }
+
+    free(test_result);
+    test_result = NULL;
+    return res;
+}
+
+typedef struct {
+    const char* test_path;
+    const char* test_expected;
+} test_t;
+
+#define CWD_ROOT "/root/xxx/yyy/zzz"
+#define CWD_NO_ROOT "root/xxx/yyy/zzz"
+
+static test_t test_stack[] = {
+    { CWD_ROOT "/../../dir1/dir2/dir3", "/root/xxx/dir1/dir2/dir3/" },
+    { CWD_NO_ROOT "/../../dir1/dir2/dir3", "root/xxx/dir1/dir2/dir3/" },
+    { "/root/../dir1", "/dir1/" },
+    { CWD_ROOT, "/root/xxx/yyy/zzz/" },
+    { CWD_NO_ROOT, "root/xxx/yyy/zzz/" },
+    { CWD_ROOT "/../../../../", "/" },
+    { CWD_NO_ROOT "/../../../../", "" },
+};
+
+const size_t test_stack_size = COUNT_OF(test_stack);
+
+int main (int argc, const char * argv[]) {
+    for (size_t i = 0; i < test_stack_size; ++i) {
+        unsigned int count = 1;
+        bool test_result = true;
+        while (count != 0 && test_result) {
+            test_t t = test_stack[i];
+            test_result = test(t.test_path, t.test_expected);
+            --count;
+        }
+        if (!test_result) {
+            break;
+        }
+    }
+    // #define CWD "/../../../../../a"
+    // #define CWD "/a/.."
+    // #define CWD "/a/./b/../../c/"
+    // #define CWD "/a/.."
+    // #define CWD "/home"
     return 0;
 }
