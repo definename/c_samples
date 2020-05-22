@@ -24,7 +24,7 @@ int main (int argc, const char * argv[]) {
         char* test_str = NULL;
         test_str = test_strdup1();
         if (test_str) {
-            printf("done!\n");
+            printf("Done:%s\n", test_str);
             free(test_str);
             test_str = NULL;
         }
