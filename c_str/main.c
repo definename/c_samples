@@ -6,13 +6,30 @@
 
 void test_str_heap_copy(const char * const name);
 void test_str_heap_copy1(const char * const name);
-void test_strdup();
+
+void test_strdup(char* test_str);
+char* test_strdup1();
 
 int main (int argc, const char * argv[]) {
+
     test_str_heap_copy(TEST_NAME);
     test_str_heap_copy1(TEST_NAME);
+
     test_strdup(TEST_NAME);
     test_strdup(NULL);
+
+    int count = 2000;
+    while (count--)
+    {
+        char* test_str = NULL;
+        test_str = test_strdup1();
+        if (test_str) {
+            printf("done!\n");
+            free(test_str);
+            test_str = NULL;
+        }
+    }
+
     return 0;
 }
 
@@ -42,4 +59,10 @@ void test_strdup(char* test_str) {
     } else {
         printf("Test str:%p is null\n", test_str);
     }
+}
+
+char* test_strdup1() {
+    char* test_str = NULL;
+    test_str = strdup("TEST_STR");
+    return test_str;
 }
