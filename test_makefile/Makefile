@@ -1,6 +1,6 @@
 APP_NAME := test_app
 APP_SRC := $(wildcard *.c)
-APP_OBJ := $(patsubst %.c, %.o, $(APP_SRC))
+APP_OBJ := $(APP_SRC:%.c=%.o)
 
 .PHONY: all clean
 
