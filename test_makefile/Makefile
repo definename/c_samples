@@ -4,6 +4,8 @@ APP_OBJ := $(APP_SRC:%.c=%.o)
 
 .PHONY: all clean
 
+CFLAGS := -Og -g -ggdb
+
 all: $(APP_NAME)
 
 $(APP_NAME): $(APP_OBJ)
@@ -12,9 +14,7 @@ $(APP_NAME): $(APP_OBJ)
 
 $(APP_OBJ): $(APP_SRC)
 	$(info object files:$(APP_OBJ) are being generated)
-	$(CC) -c $^
+	$(CC) -c $^ $(CFLAGS)
 
 clean:
 	$(RM) $(APP_OBJ) $(APP_NAME)
-
-
