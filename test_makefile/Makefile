@@ -4,16 +4,16 @@ APP_OBJ := $(APP_SRC:%.c=%.o)
 
 .PHONY: all clean
 
-CFLAGS := -Og -g -ggdb
-
 all: $(APP_NAME)
 
+ifeq ($(origin CFLAGS), undefined)
+ CFLAGS := -Og -g -ggdb
+endif
+
 $(APP_NAME): $(APP_OBJ)
-	$(info target:$@ is being built)
 	$(CC) -o $@ $^
 
 $(APP_OBJ): $(APP_SRC)
-	$(info object files:$(APP_OBJ) are being generated)
 	$(CC) -c $^ $(CFLAGS)
 
 clean:
