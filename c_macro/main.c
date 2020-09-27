@@ -1,38 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define f(a,b) a##b
-#define g(a) #a
-#define h(a) g(a)
+#define log_debug(format, ...) printf(format, ##__VA_ARGS__)
+
+#define CONCATENATE(a,b) a##b
+#define STRINGIFY(a) #a
+#define CASE_TO_STR(x) case x: return STRINGIFY(x);
+
+#define AS_IS(a) a
+#define ITEM_LIST(ADD_FUNC)   \
+    ADD_FUNC(ONE_ITEM),       \
+    ADD_FUNC(TWO_ITEM),       \
+
+char* item_names[] = { ITEM_LIST(STRINGIFY) };
 
 typedef enum {
-  ONE_ITEM = 0,
-  TWO_ITEM,
-  ITEM_UNKNOWN
+    ITEM_LIST(AS_IS)
+    ITEM_UNKNOWN,
 } item_t;
 
-#define ENUM_TO_STR(e) #e
-#define CASE_TO_STR(x) case x: return ENUM_TO_STR(x);
-#define LOG_DEBUG(format, ...) printf(format, ##__VA_ARGS__)
-
-const char* item_to_str(item_t item) {
-  switch(item) {
-    CASE_TO_STR(ONE_ITEM)
-    CASE_TO_STR(TWO_ITEM)
-    default:
-    return ENUM_TO_STR(ITEM_UNKNOWN);
-  }
+const char* item_to_str(const item_t item) {
+    switch(item) {
+        CASE_TO_STR(ONE_ITEM)
+        CASE_TO_STR(TWO_ITEM)
+        default:
+        return STRINGIFY(ITEM_UNKNOWN);
+    }
 }
 
-int main (int argc, const char * argv[]){
-  LOG_DEBUG("No data\n");
-  LOG_DEBUG("Data:%d\n", 1);
+const char* item_to_str2(const item_t item) {
+    if (item >= 0 && item < ITEM_UNKNOWN) {
+        return item_names[item];
+    } else {
+        return STRINGIFY(ITEM_UNKNOWN);
+    }
+}
 
-  printf("MACRO stringify:%s\n", g(f(1,2)));
-  printf("MACRO concatenate:%s\n", h(f(1,2)));
+int main (int argc, const char * argv[]) {
+  printf("Concatenate:%d\n", CONCATENATE(1,2));
+  printf("Stringify:%s\n", STRINGIFY(teststring));
 
-  for (int i = 0; i < 3; ++i) {
-    printf("%s(%d)\n", item_to_str(i), i);
+  for (int i = 0; i <= ITEM_UNKNOWN; ++i) {
+    log_debug("%s(%d)\n", item_to_str(i), i);
+  }
+
+  for (int i = 0; i <= ITEM_UNKNOWN; ++i) {
+    log_debug("%s(%d)\n", item_to_str2(i), i);
   }
   return 0;
 }

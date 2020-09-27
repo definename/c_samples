@@ -1,19 +1,20 @@
-.RECIPEPREFIX = >
-CWD = $(shell pwd)
-TEST_TARGET := c_macro
-TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o
+APP_NAME := c_macro_app
+APP_SRC := $(wildcard *.c)
+APP_OBJ := $(APP_SRC:%.c=%.o)
 
-PHONY :=
+.PHONY: all clean
 
-PHONY += all
-all: $(TEST_APP_NAME)
+all: $(APP_NAME)
 
-$(TEST_APP_NAME): $(TEST_APP_OBJ)
->$(CC) -o $@  $(TEST_APP_OBJ)
+ifeq ($(origin CFLAGS), undefined)
+ CFLAGS := -Og -g -ggdb
+endif
 
-PHONY += clean
+$(APP_NAME): $(APP_OBJ)
+	$(CC) -o $@ $^
+
+$(APP_OBJ): $(APP_SRC)
+	$(CC) -c $^ $(CFLAGS)
+
 clean:
->rm -vf $(TEST_APP_OBJ) $(TEST_APP_NAME)
-
-.PHONY: $(PHONY)
+	$(RM) $(APP_OBJ) $(APP_NAME)
