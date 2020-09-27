@@ -2,10 +2,10 @@ APP_NAME := c_glib_app
 APP_SRC := $(wildcard *.c)
 APP_OBJ := $(APP_SRC:%.c=%.o)
 
-APP_FLAGS := $(shell pkg-config --cflags glib-2.0)
+APP_CFLAGS := $(shell pkg-config --cflags glib-2.0)
 APP_LDLIBS := $(shell pkg-config --libs glib-2.0)
 
-CFLAGS += $(APP_FLAGS)
+CFLAGS += $(APP_CFLAGS)
 LDLIBS += $(APP_LDLIBS)
 
 .PHONY: all clean
