@@ -1,6 +1,6 @@
 <node>
-	<interface name="com.fatminmin.gdbus">
-		<method name="hello_world">
+	<interface name="com.my.gdbus.gen">
+		<method name="mymethod">
 			<arg name="greeting" direction="in" type="s"/>
 			<arg name="response" direction="out" type="s"/>
 		</method>
