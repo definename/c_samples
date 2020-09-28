@@ -8,4 +8,4 @@
 
 `./gdbus_client` - to run client
 
-`make clean` - clean up generated sources and binary
+`make clean` - clean up generated sources and binaries
