@@ -1,0 +1,8 @@
+<node>
+	<interface name="com.fatminmin.gdbus">
+		<method name="hello_world">
+			<arg name="greeting" direction="in" type="s"/>
+			<arg name="response" direction="out" type="s"/>
+		</method>
+	</interface>
+</node>

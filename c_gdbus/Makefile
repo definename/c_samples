@@ -13,7 +13,7 @@ APP_LDLIBS := $(shell pkg-config --libs $(APP_LIBLIST))
 CFLAGS += $(APP_CFLAGS)
 LDLIBS += $(APP_LDLIBS)
 
-.PHONY: all clean
+.PHONY: all clean gen
 
 all: $(GDBUS_SERVICE_NAME) $(GDBUS_CLIENT_NAME)
 
@@ -31,6 +31,13 @@ $(GDBUS_CLIENT_NAME): $(GDBUS_CLIENT_OBJ)
 $(GDBUS_CLIENT_OBJ): $(GDBUS_CLIENT_SRC)
 	$(CC) -c $^ $(CFLAGS)
 
+gen:
+	gdbus-codegen --generate-c-code minminbus \
+				  --c-namespace MinMinBus \
+				  --interface-prefix com.fatminmin. \
+				  com.fatminmin.gdbus.xml \
+
 clean:
 	$(RM) $(GDBUS_SERVICE_OBJ) $(GDBUS_SERVICE_NAME)
 	$(RM) $(GDBUS_CLIENT_OBJ) $(GDBUS_CLIENT_NAME)
+	$(RM) minminbus.c minminbus.h
