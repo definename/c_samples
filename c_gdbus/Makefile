@@ -25,7 +25,7 @@ LDLIBS += $(APP_LDLIBS)
 
 .PHONY: all clean codegen
 
-all: $(GDBUS_SERVICE_NAME) $(GDBUS_CLIENT_NAME)
+all: codegen $(GDBUS_SERVICE_NAME) $(GDBUS_CLIENT_NAME)
 
 # gdbus service
 $(GDBUS_SERVICE_NAME): $(GDBUS_SERVICE_OBJ) $(CODEGEN_OBJ)
