@@ -15,23 +15,23 @@ static GMainLoop *loop = NULL;
 #define log_debug(format, ...) g_print(format, ##__VA_ARGS__)
 
 void signal_handler(int sig) {
-	if(g_main_loop_is_running(loop)) {
-		log_debug("Exit requested:%d...\n", sig);
-		g_main_loop_quit(loop);
-	}
+    if(g_main_loop_is_running(loop)) {
+        log_debug("Exit requested:%d...\n", sig);
+        g_main_loop_quit(loop);
+    }
 }
 
 static gboolean on_handle_mymethod(MYNAMESPACEGen *interface,
-								  GDBusMethodInvocation *invocation,
-								  const gchar *greeting,
-								  gpointer user_data)
+                                   GDBusMethodInvocation *invocation,
+                                   const gchar *greeting,
+                                   gpointer user_data)
 {
-	log_debug("on_handle_mymethod:%s\n", greeting);
+    log_debug("on_handle_mymethod:%s\n", greeting);
 
-	gchar *response = g_strdup_printf("Hello %s!", greeting);
-	mynamespace_gen_complete_mymethod(interface, invocation, response);
-	g_free (response);
-	return TRUE;
+    gchar *response = g_strdup_printf("Hello %s!", greeting);
+    mynamespace_gen_complete_mymethod(interface, invocation, response);
+    g_free (response);
+    return TRUE;
 }
 
 void on_bus_acquired(GDBusConnection *connection,
