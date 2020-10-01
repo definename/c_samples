@@ -15,6 +15,7 @@ CODEGEN_OBJ := $(CODEGEN_NAME).o
 CODEGEN_HEADER := $(CODEGEN_NAME).h
 CODEGEN_NAMESPACE := MYNAMESPACE
 CODEGEN_PREFIX := com.my.gdbus.
+CODEGEN_XML := com.my.gdbus.xml
 
 APP_LIBLIST := glib-2.0 gio-2.0 gio-unix-2.0
 APP_CFLAGS := $(shell pkg-config --cflags $(APP_LIBLIST))
@@ -23,19 +24,19 @@ APP_LDLIBS := $(shell pkg-config --libs $(APP_LIBLIST))
 CFLAGS += $(APP_CFLAGS)
 LDLIBS += $(APP_LDLIBS)
 
-.PHONY: all clean codegen
+.PHONY: all clean
 
-all: codegen $(GDBUS_SERVICE_NAME) $(GDBUS_CLIENT_NAME)
+all: $(GDBUS_SERVICE_NAME) $(GDBUS_CLIENT_NAME)
 
 # gdbus service
-$(GDBUS_SERVICE_NAME): $(GDBUS_SERVICE_OBJ) $(CODEGEN_OBJ)
+$(GDBUS_SERVICE_NAME): $(CODEGEN_OBJ) $(GDBUS_SERVICE_OBJ)
 	$(CC) -o $@ $^ $(LDLIBS)
 
 $(GDBUS_SERVICE_OBJ): $(GDBUS_SERVICE_SRC)
 	$(CC) -c $^ $(CFLAGS)
 
 # gdbus client
-$(GDBUS_CLIENT_NAME): $(GDBUS_CLIENT_OBJ) $(CODEGEN_OBJ)
+$(GDBUS_CLIENT_NAME): $(CODEGEN_OBJ) $(GDBUS_CLIENT_OBJ)
 	$(CC) -o $@ $^ $(LDLIBS)
 
 $(GDBUS_CLIENT_OBJ): $(GDBUS_CLIENT_SRC)
@@ -45,11 +46,10 @@ $(GDBUS_CLIENT_OBJ): $(GDBUS_CLIENT_SRC)
 $(CODEGEN_OBJ): $(CODEGEN_SRC)
 	$(CC) -c $^ $(CFLAGS)
 
-codegen:
+$(CODEGEN_SRC): $(CODEGEN_XML)
 	gdbus-codegen --generate-c-code $(CODEGEN_NAME) \
 				  --c-namespace $(CODEGEN_NAMESPACE) \
-				  --interface-prefix $(CODEGEN_PREFIX) \
-				  com.my.gdbus.xml \
+				  --interface-prefix $(CODEGEN_PREFIX) $<
 
 clean:
 	$(RM) $(GDBUS_SERVICE_OBJ) $(GDBUS_SERVICE_NAME)
