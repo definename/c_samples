@@ -1,8 +1,6 @@
 ## request/response gdbus service/client implementation
 
-`make codegen` - to generate gdbus sources with gdbus-codegen tool
-
-`make` - to generate gdbus service and client binary
+`make` - to generate gdbus service,client binary and gdbus-codegen interface
 
 `./gdbu_service` - to run service
 
