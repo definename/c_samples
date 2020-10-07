@@ -21,6 +21,10 @@ int main (int argc, const char * argv[]) {
 
     loop = g_main_loop_new(NULL, false);
 
+    log_debug("You are running glib:%d.%d.%d\n", glib_major_version,
+                                                 glib_minor_version,
+                                                 glib_micro_version);
+
     log_debug("Waiting for termination request...\n");
 
     g_main_loop_run(loop);
