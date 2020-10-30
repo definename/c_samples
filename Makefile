@@ -10,6 +10,7 @@ all:
 	$(MAKE) -C ./c_glib
 	$(MAKE) -C ./c_gdbus
 	$(MAKE) -C ./c_gvariant
+	$(MAKE) -C ./c_gstr
 
 clean:
 	$(info [*] clean-up)
@@ -19,3 +20,4 @@ clean:
 	$(MAKE) -C ./c_glib clean
 	$(MAKE) -C ./c_gdbus clean
 	$(MAKE) -C ./c_gvariant clean
+	$(MAKE) -C ./c_gstr clean
