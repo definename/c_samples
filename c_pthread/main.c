@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include "pthread.h"
 
-void *t_handler(void* data) {
+void *thread_handler(void* data) {
     printf("We are here\n");
     if (data != NULL) {
         unsigned int* seconds_to_sleep = (unsigned int*)data;
@@ -18,7 +18,7 @@ void *t_handler(void* data) {
 int main(const int argc, const char * argv[]) {
     unsigned int sec = 2;
     pthread_t thread_hdl;
-    pthread_create(&thread_hdl, NULL, t_handler, &sec);
+    pthread_create(&thread_hdl, NULL, thread_handler, &sec);
     pthread_join(thread_hdl, NULL);
     return 0;
 }
