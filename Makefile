@@ -12,6 +12,7 @@ all:
 	$(MAKE) -C ./c_gvariant
 	$(MAKE) -C ./c_gstr
 	$(MAKE) -C ./c_pthread
+	$(MAKE) -C ./c_io
 
 clean:
 	$(info [*] clean-up)
@@ -23,3 +24,4 @@ clean:
 	$(MAKE) -C ./c_gvariant clean
 	$(MAKE) -C ./c_gstr clean
 	$(MAKE) -C ./c_pthread clean
+	$(MAKE) -C ./c_io clean

@@ -1,22 +1,22 @@
-.RECIPEPREFIX = >
-TEST_TARGET := c_io
-TEST_APP_NAME := $(TEST_TARGET)_app
-TEST_APP_OBJ := main.o test_fgets.o
+APP_NAME := c_io_app
+APP_SRC := $(wildcard *.c)
+APP_OBJ := $(APP_SRC:%.c=%.o)
 
-CFLAGS :=
-CFLAGS += -g
-CFLAGS += -I./..
+APP_CFLAGS :=
+APP_LDLIBS :=
 
-PHONY :=
+CFLAGS += $(APP_CFLAGS)
+LDLIBS += $(APP_LDLIBS)
 
-PHONY += all
-all: $(TEST_APP_NAME)
+.PHONY: all clean
 
-$(TEST_APP_NAME): $(TEST_APP_OBJ)
->$(CC) -o $@  $(TEST_APP_OBJ)
+all: $(APP_NAME)
 
-PHONY += clean
+$(APP_NAME): $(APP_OBJ)
+	$(CC) -o $@ $^ $(LDLIBS)
+
+$(APP_OBJ): $(APP_SRC)
+	$(CC) -c $^ $(CFLAGS)
+
 clean:
->rm -vf $(TEST_APP_OBJ) $(TEST_APP_NAME)
-
-.PHONY: $(PHONY)
+	$(RM) $(APP_OBJ) $(APP_NAME)
