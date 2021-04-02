@@ -26,4 +26,9 @@
 
 [pthread](http://man7.org/linux/man-pages/man0/pthread.h.0p.html#top_of_page) POSIX Programmer's Manual 
 
----
+# Using precompiled headers with g++
+
+```
+g++ -c all.h
+g++ -H main.cpp
+```
